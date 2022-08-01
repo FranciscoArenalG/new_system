@@ -10,7 +10,7 @@
     <div class="card mt-5">
       <h5 class="card-header">Error de solicitud</h5>
       <div class="card-body">
-        <h1 class="text-center text-danger">Hubo un error en la solicitud o no existe la página</h1>
+        <h1 class="text-center text-danger">Hubo un error en la solicitud o no existe la página.</h1>
       </div>
     </div>
   <?php require("views/footer.view.php"); ?>
