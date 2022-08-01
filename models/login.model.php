@@ -19,13 +19,13 @@ class LoginModel extends ModelBase
                 INSERT INTO cat_socios (nombre_socio,apellidop_socio,apellidom_socio,correo_socio,fk_categoria,fk_prefijo) 
                 VALUES (:nombreSocio,:apellidopSocio,:apellidomSocio,:categoriaSocio,:prefijoSocio);
             ");
-            $query_datos_socio->execute([
+            /* $query_datos_socio->execute([
                 ':nombreSocio'=> ,
                 ':apellidopSocio' => ,
                 ':apellidomSocio' => ,
                 ':categoriaSocio' => ,
                 ':prefijoSocio' =>
-            ]);
+            ]); */
             $query_datos_socio->commit();
             return true;
         } catch (PDOException $e) {
