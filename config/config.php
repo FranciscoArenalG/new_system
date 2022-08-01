@@ -16,7 +16,7 @@ define("CHARSET", "utf8");//Codificación de caracteres.
     }
 define("URL",$resp[0]['dominio_sociedad']);//Dominio del sistema
 define("Sistema", "grupo-lahe");//Nombre del sistema
-//asdasd
+
 define("LOGOTIPO", $resp[0]['ruta_logotipo']);
 define("ICONO",$resp[0]['ruta_icono']);
 define("SOCIEDAD",$resp[0]['nombre_sociedad']);
