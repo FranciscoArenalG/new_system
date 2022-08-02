@@ -128,4 +128,22 @@ class CatalogosModel extends ModelBase
             return false;
         }
     }
+
+    public function crearCategoria($data)
+    {
+        
+        try {
+            $query = $this->db->connect()->prepare("
+                INSERT INTO cat_categoria (clave_categoria,nombre_categoria,estatus_categoria) 
+                VALUES (:clave_categoria,:nombre_categoria,:estatus_categoria);
+            ");
+            $query->execute($data); 
+            // $query->commit();
+            return true;
+        } catch (PDOException $e) {
+            // $query->rollBack();
+            return false;
+        }
+        //echo $datos['reg_correo'];
+    }
 }

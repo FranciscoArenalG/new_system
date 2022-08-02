@@ -80,6 +80,47 @@ class Catalogos extends ControllerBase
         echo json_encode($datos);
       }
 
+      public function crearCategoria(){
+        $nombre_categoria = $_POST['crear_cat'];
+        $data = [
+          'nombre_categoria' => $nombre_categoria,
+          'clave_categoria' => $this->generateRandomString(6),
+          'estatus_categoria' => 1
+        ];
+
+
+        try {
+          if ($this->model->crearCategoria($data)) {
+            //echo "Se registro correctamente, bienvenido/a";
+            $datos = [
+              'estatus' => 'success',
+              'title' => 'Registro exitoso',
+              'text' => 'Se registro correctamente la categoria.'
+            ];
+          }else{
+            //echo "El correo ingresado ya se encuentra registrado";
+            $datos = [
+              'estatus' => 'warning',
+              'title' => 'Error al guardar',
+              'text' => 'Ocurrió un error al guardar la infromación, si el problema persiste favor de llamar al area de sistemas.'
+            ];
+          }
+        } catch (\Throwable $th) {
+          $datos = [
+            'estatus' => 'error',
+            'title' => 'Error al guardar',
+            'text' => 'Ocurrió un error al guardar la infromación, si el problema persiste favor de llamar al area de sistemas.'
+          ];
+          
+        }
+        echo json_encode($datos);
+      
+      }
+
+      public function generateRandomString($length = 6) { 
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+      } 
+
 }
 
 ?>

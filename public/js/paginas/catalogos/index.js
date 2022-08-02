@@ -127,4 +127,56 @@ $(function () {
             }
         });     
     });
+
+    $("#form_crear_categoria").on("submit",function(event) {
+        event.preventDefault();
+        let form = $("#form_crear_categoria");
+        if (form[0].checkValidity() === false) {
+          event.preventDefault()
+          event.stopPropagation()
+        } else {
+            $.ajax({
+                type : 'POST',
+                url  : servidor + 'catalogos/crearCategoria',
+                dataType: 'json',
+                data : form.serialize(),
+            beforeSend: function() {
+                // setting a timeout
+                console.log("Procesando...");
+            },
+            success :  function(data){                
+                console.log(data);
+                swal({
+                    icon: data.estatus,
+                    title: data.title,
+                    text: data.text,
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    allowOutsideClick: false,
+                    buttons: false,
+                    timer: 2000
+                });
+
+                tblCategorias();
+            },
+            error: function (data) {
+                console.log(data);
+                swal({
+                    icon: data.estatus,
+                    title: data.title,
+                    text: data.text,
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    allowOutsideClick: false,
+                    buttons: false,
+                    timer: 2000
+                });
+            },
+            complete: function() {
+                // $("#loading").removeClass('loading');
+            }
+            });
+        }
+        form.addClass('was-validated');
+    });
 });
